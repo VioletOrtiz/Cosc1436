@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class WordFilter {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		try {
+			System.out.print("Enter the desired lenght of words to filter:");
+			int desiredLength = scanner.nextInt();
+			scanner.nextLine(): 
+			List<String> filteredWords = filterWordsByLength(desiredLength);
+			
+			if (filteredWords.isEmpty()) {
+				System.out.println("No words of length" + desiredLength + ":");
+			} else {
+				System.out.println("Words of Lenght" + desiredLength + ":");
+				for (String word : filteredWords) {
+					System.out.println(word);
+				}
+			}
+		} catch (IOException e {
+			System.err.println("Error reading file: " + e.getMessage()); 
+		} catch (NumberFormatException e) {
+			System.err.println("Invalid input. Please enter a valid integer.");
+		}
+	}
+	
+	public static List<String> filteredWordsByLength(int Length) throws IOException {
+		List<String> filteredWords = new ArrayList<>(); 
+		String fileName = "words_alpha.txt";
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.length() == length) {
+					filteredWords.add(line);
+				}
+			}
+		}
+		return filteredWords;
+	}
+}
+
